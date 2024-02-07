@@ -14,7 +14,7 @@ import jakarta.persistence.Persistence;
 				factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			return factory;
 		}
-	    
+		
 		public static void shutdown() {
 			if(factory !=null)
 				factory.close();
