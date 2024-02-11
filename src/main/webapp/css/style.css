@@ -74,7 +74,7 @@ body {
 	color: rgba(0, 0, 0, 0.8);
 }
 
-.form-group button {
+.form-group .btnIngresar {
 	outline: none;
 	background: #4285F4;
 	margin-left: auto; margin-right: auto;
@@ -89,6 +89,7 @@ body {
 	line-height: inherit;
 	text-transform: uppercase;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .form-panel {
