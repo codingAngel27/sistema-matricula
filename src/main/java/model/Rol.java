@@ -11,15 +11,9 @@ public class Rol {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_rol")
+	@Column(name = "idRol")
 	private Integer idRol;
 	
 	@Column
-	private String email;
-	
-	@Column
-	private String nombre;
-	
-	@Column
-	private String clave;
+	private String nombreRol;
 }
