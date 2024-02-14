@@ -39,7 +39,7 @@ public class AlumnoServlet extends HttpServlet {
 			case "registrar":
 				String id = request.getParameter("txtIdAlumno");
 				if (id != null && !id.isEmpty())
-					upDateAlumno(request, response);
+					updateAlumno(request, response);
 				else
 					createAlumno(request, response);
 				break;
@@ -77,17 +77,17 @@ public class AlumnoServlet extends HttpServlet {
 
 	}
 
-	private void upDateAlumno(HttpServletRequest request, HttpServletResponse response)
+	private void updateAlumno(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		Integer id = Integer.parseInt(request.getParameter("txtIdAlumno"));
 		String dni = request.getParameter("txtDni");
 		String nombre = request.getParameter("txtNombre");
 		String apellido = request.getParameter("txtApellido");
-		Integer edad = Integer.parseInt(request.getParameter("txtEdad"));
 		String correo = request.getParameter("txtCorreo");
 
 		Alumno alumno = new Alumno();
+		alumno.setIdAlumno(id);
 		alumno.setDni(dni);
 		alumno.setNombres(nombre);
 		alumno.setApellidos(apellido);
@@ -107,7 +107,6 @@ public class AlumnoServlet extends HttpServlet {
 		String dni = request.getParameter("txtDni");
 		String nombre = request.getParameter("txtNombre");
 		String apellido = request.getParameter("txtApellido");
-		Integer edad = Integer.parseInt(request.getParameter("txtEdad"));
 		String correo = request.getParameter("txtCorreo");
 		String estado = request.getParameter("txtEstado");
 
