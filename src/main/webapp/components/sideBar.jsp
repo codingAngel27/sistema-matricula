@@ -1,13 +1,3 @@
-<%@page import="model.Rol"%>
-<%@page import="model.Usuario"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/matricula.css" type="text/css">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
@@ -21,15 +11,13 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="./css/estilos.css" type="text/css">
+<link rel="stylesheet" href="./css/style.css" type="text/css">
 
 
 <link
 	href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"
 	rel="stylesheet" />
-<title>Insert title here</title>
-</head>
-<body>
+
 	<!-- NADVAR -->
 	<div class="wrapper">
 		<!-- Sidebar -->
@@ -41,9 +29,8 @@
 				<!-- Sidebar Navigation -->
 				<ul class="sidebar-nav">
 
-					<li class="sidebar-item"><a href="index.jsp"
-						class="sidebar-link"> <i class="fa-solid fa-list pe-2"></i>
-							Perfil
+					<li class="sidebar-item"><a href="index.jsp" class="sidebar-link">
+							<i class="fa-solid fa-list pe-2"></i> Perfil
 					</a></li>
 					<li class="sidebar-item"><a href="#"
 						class="sidebar-link collapsed" data-bs-toggle="collapse"
@@ -65,13 +52,12 @@
 						aria-controls="matriculas"> <i
 							class="fa-regular fa-file-lines pe-2"></i> Registro Matriculas
 					</a>
-						<ul id="matriculas"
-							class="sidebar-dropdown list-unstyled collapse"
+						<ul id="matriculas" class="sidebar-dropdown list-unstyled collapse"
 							data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a href="matricula.jsp"
 								class="sidebar-link">Matricular Alumnos</a></li>
-							<li class="sidebar-item"><a href="retiro.jsp"
-								class="sidebar-link">Retiro Alumnos</a></li>
+							<li class="sidebar-item"><a href="retiro.jsp" class="sidebar-link">Retiro
+									Alumnos</a></li>
 						</ul></li>
 
 					<li class="sidebar-item"><a href="consultamatricula.jsp"
@@ -106,47 +92,28 @@
 		<!-- Main Component -->
 		<div class="main">
 			<nav class="navbar navbar-expand px-3 border-bottom">
-				<!-- Button for sidebar toggle -->
-				<button class="btn custom-navbar-toggler" type="button"
-					data-bs-theme="dark">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-			</nav>
+    <!-- Button for sidebar toggle -->
+    <button class="btn custom-navbar-toggler" type="button" data-bs-theme="dark">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
 			<main class="content px-3 py-2">
-				<h3>Hola desde prueba de components</h3>
-				<%
-				Usuario usuarios = new Usuario();
-				HttpSession session2 = request.getSession();
-				Usuario usuario = (Usuario) session2.getAttribute("usuario");
 
-				if (usuario != null) {
-					Rol rol = usuario.getIdRol();
-				%>
-				<p>
-					Nombre:
-					<%=usuario.getNombre()%></p>
-				<p>
-					Rol:
-					<%=(rol != null) ? rol.getNombreRol() : "Sin Rol"%></p>
-				<p>
-					Email:
-					<%=usuario.getEmail()%></p>
-				<%
-				} else {
-				%>
-				<p>No se ha iniciado sesión.</p>
-				<%
-				}
-				%>
-				<%@ include file="components/footer.jsp"%>
+	<!-- FIN CONTENEDOR MATRICULA -->
+	
 			</main>
+
+
 		</div>
 	</div>
+	<div></div>
+
 	<%
 	if (session.getAttribute("usuario") == null) {
 		response.sendRedirect("login.jsp");
 	}
 	%>
+
 	<script
 		src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 	<script
@@ -158,5 +125,3 @@
 
 	<script src="js/script.js"></script>
 	<script src="js/matricula.js"></script>
-</body>
-</html>

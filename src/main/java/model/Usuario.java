@@ -30,7 +30,7 @@ public class Usuario {
 	private String clave;
 	
 	@ManyToOne
-	@JoinColumn(name = "rolId")
+	@JoinColumn(name = "idRol")
 	private Rol idRol;
 
 	public Integer getIdUsuario() {
