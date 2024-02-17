@@ -68,10 +68,10 @@ public class AlumnoServlet extends HttpServlet {
 
 		if (alumno != null) {
 			request.setAttribute("alumno", alumno);
-			listarAlumno(request, response);
+			request.getRequestDispatcher("alumno.jsp").forward(request, response);
 		} else {
 			request.setAttribute("mensaje", "Error al obtener Alumno");
-			request.getRequestDispatcher("manteAlumno.jsp").forward(request, response);
+			request.getRequestDispatcher("listAlumno.jsp").forward(request, response);
 
 		}
 
@@ -85,6 +85,7 @@ public class AlumnoServlet extends HttpServlet {
 		String nombre = request.getParameter("txtNombre");
 		String apellido = request.getParameter("txtApellido");
 		String correo = request.getParameter("txtCorreo");
+		String telefono = request.getParameter("txtTelefono");
 
 		Alumno alumno = new Alumno();
 		alumno.setIdAlumno(id);
@@ -92,7 +93,7 @@ public class AlumnoServlet extends HttpServlet {
 		alumno.setNombres(nombre);
 		alumno.setApellidos(apellido);
 		alumno.setEmail(correo);
-		alumno.setTelefono(correo);
+		alumno.setTelefono(telefono);
 		alumno.setEstado(0);
         alumnoDao.actualizarAlumno(alumno);
 
@@ -108,7 +109,14 @@ public class AlumnoServlet extends HttpServlet {
 		String nombre = request.getParameter("txtNombre");
 		String apellido = request.getParameter("txtApellido");
 		String correo = request.getParameter("txtCorreo");
-		String estado = request.getParameter("txtEstado");
+		String telefono = request.getParameter("txtTelefono");
+		// Verificar si alguno de los campos está vacío
+	    if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
+	        // Si algún campo está vacío, mostrar un mensaje de error y detener la ejecución del método
+	        request.setAttribute("mensaje", "Error: Todos los campos son obligatorios");
+	        //request.getRequestDispatcher("manteAlumno.jsp").forward(request, response);
+	        return;
+	    }
 
 		Alumno alumno = new Alumno();
 
@@ -116,14 +124,13 @@ public class AlumnoServlet extends HttpServlet {
 		alumno.setNombres(nombre);
 		alumno.setApellidos(apellido);
 		alumno.setEmail(correo);
-		alumno.setTelefono(correo);
+		alumno.setTelefono(telefono);
 		alumno.setEstado(0);
-		 alumnoDao.crearAlumno(alumno);
+		alumnoDao.crearAlumno(alumno);
 
 			listarAlumno(request, response);
+			//response.sendRedirect("listAlumnos.jsp");
 			request.setAttribute("mensaje", "Error al crear Alumno");
-			//request.getRequestDispatcher("manteAlumno.jsp").forward(request, response);
-
 	}
 
 	private void listarAlumno(HttpServletRequest request, HttpServletResponse response)
@@ -132,7 +139,7 @@ public class AlumnoServlet extends HttpServlet {
 		List<Alumno> lisAlumno = alumnoDao.listarAlumnos();
 
 		request.setAttribute("listAlumno", lisAlumno);
-		request.getRequestDispatcher("manteAlumno.jsp").forward(request, response);
+	request.getRequestDispatcher("listAlumnos.jsp").forward(request, response);
 
 	}
 
@@ -143,7 +150,7 @@ public class AlumnoServlet extends HttpServlet {
 		 listarAlumno(request, response);
 
 			request.setAttribute("mensaje", "Error al eliminar Alumno");
-			request.getRequestDispatcher("manteAlumno.jsp").forward(request, response);
+			//request.getRequestDispatcher("alumno.jsp").forward(request, response);
 		}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

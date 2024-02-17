@@ -1,7 +1,7 @@
-<%@page import="model.Rol"%>
-<%@page import="model.Usuario"%>
+<%@page import="model.Alumno"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,31 +115,72 @@
 				</button>
 			</nav>
 			<main class="content px-3 py-2">
-				<h3>Hola desde prueba de components</h3>
-				<%
-				Usuario usuarios = new Usuario();
-				HttpSession session2 = request.getSession();
-				Usuario usuario = (Usuario) session2.getAttribute("usuario");
+			
+			<div class="container-fluid mantenimiento-container ">
 
-				if (usuario != null) {
-					Rol rol = usuario.getIdRol();
-				%>
-				<p>
-					Nombre:
-					<%=usuario.getNombre()%></p>
-				<p>
-					Rol:
-					<%=(rol != null) ? rol.getNombreRol() : "Sin Rol"%></p>
-				<p>
-					Email:
-					<%=usuario.getEmail()%></p>
-				<%
-				} else {
-				%>
-				<p>No se ha iniciado sesión.</p>
-				<%
-				}
-				%>
+					<h3 class="title-mantenimiento">Mantenimiento Alumno</h3>
+					<nav class="navbar bg-body-tertiary container-buscar"
+						id="manteAlumno">
+						<div class="container">
+							<form class="d-flex justify-content-end" role="search"
+								action="ManteAlumServlet?type=buscarAlum" method="post">
+								<div class="input-group">
+									<input class="form-control me-2" type="search"
+										placeholder="Buscar" aria-label="Search" name="txtBuscarDni"
+										id="txtBuscarDni">
+									<button class="btn btn-success" type="submit">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</div>
+							</form>
+						</div>
+					</nav>
+					
+
+					<div class="row">
+						<div class="col-3">
+
+							<form action="AlumnoServlet?type=registrar" method="post"
+								name="mantenimientoAlumno">
+								<div class="form-group">
+									<label>Id Alumno</label> <input class="form-control"
+										type="text" value="${alumno.idAlumno}" name="txtIdAlumno"
+										id="txtIdAlumno" readonly="readonly">
+								</div>
+								<div class="form-group">
+									<label>DNI</label> <input class="form-control" type="text"
+										value="${alumno.dni}" name="txtDni" id="txtDni">
+								</div>
+								<br>
+								<div class="form-group">
+									<label>Nombre</label> <input class="form-control" type="text"
+										value="${alumno.nombres}" name="txtNombre" id="txtNombre">
+								</div>
+								<br>
+								<div class="form-group">
+									<label>Apellido</label> <input class="form-control"
+										value="${alumno.apellidos}" type="text" name="txtApellido"
+										id="txtApellido">
+								</div>
+								<br>
+								<div class="form-group">
+									<label>Telefono</label> <input class="form-control" type="text"
+										value="${alumno.telefono}" name="txtTelefono" id="txtTelefono">
+								</div>
+								<br>
+								<div class="form-group">
+									<label>Correo</label> <input class="form-control" type="text"
+										value="${alumno.email}" name="txtCorreo" id="txtCorreo">
+								</div>
+									<div class="col-md-6">
+								<input type="submit" class="mt-5 btn btn-primary" value="<% if (request.getParameter("idAlumno") != null) { %>Actualizar<% } else { %>Enviar Datos<% } %>">
+
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			
 				<%@ include file="components/footer.jsp"%>
 			</main>
 		</div>

@@ -1,7 +1,7 @@
-<%@page import="model.Rol"%>
-<%@page import="model.Usuario"%>
+<%@page import="model.Alumno"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,40 +115,55 @@
 				</button>
 			</nav>
 			<main class="content px-3 py-2">
-				<h3>Hola desde prueba de components</h3>
-				<%
-				Usuario usuarios = new Usuario();
-				HttpSession session2 = request.getSession();
-				Usuario usuario = (Usuario) session2.getAttribute("usuario");
+			
+			<a href="alumno.jsp" class="btn btn-primary">Registrar Alumno</a>
+	<div class="col-9" style="padding-top: 2em">
+							<table class="table table-success table-striped">
+								<thead>
+									<tr>
+										<th>Id Alumno</th>
+										<th>DNI</th>
+										<th>Nombre</th>
+										<th>Apellido</th>
+										<th>Telefono</th>
+										<th>Correo</th>
+										<th>Estado</th>
+										<th>Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+									List<Alumno> listAlumno = (List<Alumno>) request.getAttribute("listAlumno");
+									if (listAlumno != null) {
+										for (Alumno alu : listAlumno) {
+									%>
+									<tr>
+										<td><%=alu.getIdAlumno()%></td>
+										<td><%=alu.getDni()%></td>
+										<td><%=alu.getNombres()%></td>
+										<td><%=alu.getApellidos()%></td>
+										<td><%=alu.getTelefono()%></td>
+										<td><%=alu.getEmail()%></td>
+										<td><%=alu.getEstado()%></td>
+										<td><a
+											href="AlumnoServlet?type=obtener&idAlumno=<%=alu.getIdAlumno()%>"
+											class="btn btn-primary"><i
+												class="fa-solid fa-pen-to-square"></i></a> <a
+											href="AlumnoServlet?type=eliminar&idAlumno=<%=alu.getIdAlumno()%>"
+											class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+									</tr>
+									<%
+									}
+									}
+									%>
 
-				if (usuario != null) {
-					Rol rol = usuario.getIdRol();
-				%>
-				<p>
-					Nombre:
-					<%=usuario.getNombre()%></p>
-				<p>
-					Rol:
-					<%=(rol != null) ? rol.getNombreRol() : "Sin Rol"%></p>
-				<p>
-					Email:
-					<%=usuario.getEmail()%></p>
-				<%
-				} else {
-				%>
-				<p>No se ha iniciado sesión.</p>
-				<%
-				}
-				%>
+								</tbody>
+							</table>
+						</div>
 				<%@ include file="components/footer.jsp"%>
 			</main>
 		</div>
 	</div>
-	<%
-	if (session.getAttribute("usuario") == null) {
-		response.sendRedirect("login.jsp");
-	}
-	%>
 	<script
 		src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 	<script
