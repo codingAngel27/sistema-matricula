@@ -110,11 +110,10 @@ public class AlumnoServlet extends HttpServlet {
 		String apellido = request.getParameter("txtApellido");
 		String correo = request.getParameter("txtCorreo");
 		String telefono = request.getParameter("txtTelefono");
-		// Verificar si alguno de los campos está vacío
 	    if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
-	        // Si algún campo está vacío, mostrar un mensaje de error y detener la ejecución del método
+
 	        request.setAttribute("mensaje", "Error: Todos los campos son obligatorios");
-	        //request.getRequestDispatcher("manteAlumno.jsp").forward(request, response);
+;
 	        return;
 	    }
 
@@ -128,9 +127,8 @@ public class AlumnoServlet extends HttpServlet {
 		alumno.setEstado(0);
 		alumnoDao.crearAlumno(alumno);
 
-			listarAlumno(request, response);
-			//response.sendRedirect("listAlumnos.jsp");
-			request.setAttribute("mensaje", "Error al crear Alumno");
+		listarAlumno(request, response);
+		//request.setAttribute("mensaje", "Error al crear Alumno");
 	}
 
 	private void listarAlumno(HttpServletRequest request, HttpServletResponse response)

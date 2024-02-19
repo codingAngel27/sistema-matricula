@@ -22,8 +22,6 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="./css/estilos.css" type="text/css">
-
-
 <link
 	href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"
 	rel="stylesheet" />
@@ -119,11 +117,11 @@
 			<div class="container-fluid mantenimiento-container ">
 
 					<h3 class="title-mantenimiento">Mantenimiento Alumno</h3>
-					<nav class="navbar bg-body-tertiary container-buscar"
+					<!--<nav class="navbar bg-body-tertiary container-buscar"
 						id="manteAlumno">
 						<div class="container">
 							<form class="d-flex justify-content-end" role="search"
-								action="ManteAlumServlet?type=buscarAlum" method="post">
+								action="AlumnoServlett?type=buscarAlum" method="post">
 								<div class="input-group">
 									<input class="form-control me-2" type="search"
 										placeholder="Buscar" aria-label="Search" name="txtBuscarDni"
@@ -134,9 +132,8 @@
 								</div>
 							</form>
 						</div>
-					</nav>
+					</nav>-->
 					
-
 					<div class="row">
 						<div class="col-3">
 
@@ -169,22 +166,28 @@
 								</div>
 								<br>
 								<div class="form-group">
-									<label>Correo</label> <input class="form-control" type="text"
+									<label>Correo</label> <input class="form-control" type="email"
 										value="${alumno.email}" name="txtCorreo" id="txtCorreo">
 								</div>
 									<div class="col-md-6">
 								<input type="submit" class="mt-5 btn btn-primary" value="<% if (request.getParameter("idAlumno") != null) { %>Actualizar<% } else { %>Enviar Datos<% } %>">
 
 							</div>
+						<br>
+							<div class="col-md-6">
+								<a href="AlumnoServlet?type=listar" class="btn btn-primary"
+									id="btnListar">Listar</a>
+							</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			
-				<%@ include file="components/footer.jsp"%>
+				
 			</main>
 		</div>
 	</div>
+	 <%@ include file="components/footer.jsp"%>
 	<%
 	if (session.getAttribute("usuario") == null) {
 		response.sendRedirect("login.jsp");

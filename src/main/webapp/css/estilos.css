@@ -150,6 +150,16 @@ a.sidebar-link {
     max-width: 100vw;
     width: 100vw;
 }
+.footer-pie {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(63,94,251);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 /* Responsive */
 
 @media (min-width:768px) {

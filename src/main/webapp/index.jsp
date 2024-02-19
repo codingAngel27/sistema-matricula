@@ -22,8 +22,6 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="./css/estilos.css" type="text/css">
-
-
 <link
 	href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"
 	rel="stylesheet" />
@@ -140,10 +138,10 @@
 				<%
 				}
 				%>
-				<%@ include file="components/footer.jsp"%>
 			</main>
 		</div>
 	</div>
+	<%@ include file="components/footer.jsp"%>
 	<%
 	if (session.getAttribute("usuario") == null) {
 		response.sendRedirect("login.jsp");
