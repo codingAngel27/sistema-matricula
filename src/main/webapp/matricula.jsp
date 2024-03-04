@@ -67,13 +67,13 @@
 						<br>
 						<div class="form-group">
 							<label class="label-matricula">Código de Alumno</label> <input
-								class="form-control" type="number" value="${matri.codAlumno}"
+								class="form-control" type="number" value="${matri.codAlumno.idAlumno}"
 								name="txtCodAlumno" id="txtCodAlumno">
 						</div>
 						<br>
 						<div class="form-group">
 							<label class="label-matricula">Código de Curso</label> <input
-								class="form-control" type="number" value="${matri.codCurso}"
+								class="form-control" type="number" value="${matri.codCurso.codCurso}"
 								name="txtCodCurso" id="txtCodCurso">
 						</div>
 						<br>

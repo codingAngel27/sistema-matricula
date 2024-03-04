@@ -3,6 +3,8 @@ package model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -27,6 +29,18 @@ public class Curso {
 	
 	@Column
 	private Integer horasCurso;
+	
+	@ManyToOne
+	@JoinColumn(name = "idDocente")
+	private Docente idDocente;
+    
+	public Docente getIdDocente() {
+		return idDocente;
+	}
+
+	public void setIdDocente(Docente idDocente) {
+		this.idDocente = idDocente;
+	}
 
 	public Integer getCodCurso() {
 		return codCurso;

@@ -53,7 +53,7 @@
         </div>
       </div>
       <footer>
-      <h3>Desarrollado por @angeldev</h3>
+      <h3>Derechos reservados</h3>
       </footer>
   <script>
     // Espera 5 segundos y luego oculta el mensaje

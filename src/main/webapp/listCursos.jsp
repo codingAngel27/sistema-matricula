@@ -1,3 +1,4 @@
+<%@page import="model.Docente"%>
 <%@page import="model.Curso"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -52,6 +53,7 @@
 										<th>Ciclo</th>
 										<th>Creditos</th>
 										<th>Horas</th>
+										<th>Docente</th>
 										<th>Acciones</th>
 
 									</tr>
@@ -60,8 +62,8 @@
 									<%
 									List<Curso> listCursos = (List<Curso>) request.getAttribute("listCurso");
 									if (listCursos != null) {
-										;
 										for (Curso curso : listCursos) {
+											Docente docente = curso.getIdDocente();
 									%>
 									<tr>
 										<td><%=curso.getCodCurso()%></td>
@@ -69,8 +71,7 @@
 										<td><%=curso.getCiclo()%></td>
 										<td><%=curso.getCrediCurso()%></td>
 										<td><%=curso.getHorasCurso()%></td>
-
-
+										<td><%= docente != null ? docente.getNombre() : "N/A" %></td>
 										<td><a
 											href="CursoServlet?type=obtener&codCurso=<%=curso.getCodCurso()%>"
 											class="btn btn-primary"><i

@@ -1,4 +1,7 @@
+<%@page import="daoImplements.DocenteDaoImpl"%>
+<%@page import="daoInterface.IDocenteDao"%>
 <%@page import="model.Curso"%>
+<%@page import="model.Docente"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -62,9 +65,16 @@
 								</div>
 								<br>
 								<div class="form-group">
-									<label>Ciclo</label> <input class="form-control" type="text"
-										value="${curso.ciclo}" name="txtCiclo" id="txtCiclo">
+									<label for="txtCiclo">Ciclo</label> <select
+										class="form-control" name="txtCiclo" id="txtCiclo">
+										<option value="1" ${curso.ciclo == '1' ? 'selected' : ''}>Primero</option>
+										<option value="2" ${curso.ciclo == '2' ? 'selected' : ''}>Segundo</option>
+										<option value="3" ${curso.ciclo == '3' ? 'selected' : ''}>Tercero</option>
+										<option value="4" ${curso.ciclo == '4' ? 'selected' : ''}>Cuarto</option>
+										<option value="5" ${curso.ciclo == '5' ? 'selected' : ''}>Quinto</option>
+									</select>
 								</div>
+								<br>
 								<div class="form-group">
 									<label>Creditos</label> <input class="form-control"
 										value="${curso.crediCurso}" type="text" name="txtCreditCurso"
@@ -77,9 +87,35 @@
 										id="txtHorasCurso">
 
 								</div>
+								<br>
+								<div class="form-group">
+									<label for="selectDocente">Seleccionar Docente</label> <select
+										class="form-control" name="selectDocente" id="selectDocente">
+										<%
+										Curso curso = (Curso) request.getAttribute("curso");
+										IDocenteDao docenteDao = new DocenteDaoImpl();
+										List<Docente> listarDocentes = docenteDao.listarDocentes();
+
+										if (listarDocentes != null) {
+											for (Docente d : listarDocentes) {
+										%>
+										<option value="<%=d.getIdProfesor()%>"
+											<%if (curso != null && curso.getIdDocente() != null && d.getIdProfesor() == curso.getIdDocente().getIdProfesor()) {out.print("selected");}%>><%=d.getNombre()%></option>
+										<%
+										}
+										}
+										%>
+									</select>
+								</div>
+
+
+
+
+
 								<div class="col-md-6">
-								<input type="submit" class="mt-5 btn btn-primary" value="<% if (request.getParameter("codCurso") != null) { %>Actualizar<% } else { %>Enviar Datos<% } %>">
-							</div>
+									<input type="submit" class="mt-5 btn btn-primary"
+										value="<%if (request.getParameter("codCurso") != null) {%>Actualizar<%} else {%>Enviar Datos<%}%>">
+								</div>
 							</form>
 						</div>
 					</div>
@@ -101,10 +137,7 @@
 													required : true,
 													minlength : 2
 												},
-												txtCiclo : {
-													required : true,
-													minlength : 1
-												},
+
 												txtCreditCurso : {
 													required : true,
 													minlength : 1
@@ -125,10 +158,7 @@
 													required : "Ingrese el nombre del Curso",
 													minlength : "El Nombre debe tener minimo 2 caracteres"
 												},
-												txtCiclo : {
-													required : "Ingrese el ciclo",
-													minlength : "El Apellido debe tener minimo 1 caracteres"
-												},
+
 												txtCreditCurso : {
 													required : "Ingrese el Credito",
 													minlength : "El Credito debe tener minimo 1 caracteres"

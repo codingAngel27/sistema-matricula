@@ -3,7 +3,7 @@
 <aside id="sidebar">
 			<div class="h-100">
 				<div class="sidebar-logo">
-					<a href="index.jsp">Matricula Web</a>
+					<a href="index.jsp">I.E Albert Einstein</a>
 				</div>
 				<!-- Sidebar Navigation -->
 				<ul class="sidebar-nav">

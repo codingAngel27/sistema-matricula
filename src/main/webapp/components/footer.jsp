@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <footer class="footer-pie">
-      <h3 class="h-3">Desarrollado por @angeldev</h3>
+      <h3 class="h-3">Derechos reservados</h3>
       </footer>
 <style>
  .footer-pie {

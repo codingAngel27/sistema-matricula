@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import daoImplements.CursoDaoImpl;
+import daoImplements.DocenteDaoImpl;
 import daoInterface.ICursoDao;
+import daoInterface.IDocenteDao;
+import model.Alumno;
 import model.Curso;
+import model.Docente;
 
 /**
  * Servlet implementation class CursoServlet
@@ -19,6 +23,7 @@ import model.Curso;
 @WebServlet("/CursoServlet")
 public class CursoServlet extends HttpServlet {
 	ICursoDao cursoDao = new CursoDaoImpl();
+	IDocenteDao doce = new DocenteDaoImpl();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -85,6 +90,9 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 		Integer ciclo = Integer.parseInt(request.getParameter("txtCiclo"));
 		Integer creditCurso = Integer.parseInt(request.getParameter("txtCreditCurso"));
 	    Integer horasCurso = Integer.parseInt(request.getParameter("txtHorasCurso"));
+        Integer docente = Integer.parseInt(request.getParameter("selectDocente"));
+	    
+	    Docente docent = doce.getDocente(docente);
 	    
 	    Curso curso = new Curso();
 	    curso.setCodCurso(codCurso);
@@ -92,6 +100,7 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 	    curso.setCiclo(ciclo);
 	    curso.setCrediCurso(creditCurso);
 	    curso.setHorasCurso(horasCurso);
+	    curso.setIdDocente(docent);
 	    
 	    cursoDao.actualizarCurso(curso);
 	    
@@ -108,13 +117,16 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 		Integer ciclo = Integer.parseInt(request.getParameter("txtCiclo"));
 		Integer creditCurso = Integer.parseInt(request.getParameter("txtCreditCurso"));
 	    Integer horasCurso = Integer.parseInt(request.getParameter("txtHorasCurso"));
+	    Integer docente = Integer.parseInt(request.getParameter("selectDocente"));
 	    
+	    Docente docent = doce.getDocente(docente);
 	    Curso curso = new Curso();
 	    curso.setCodCurso(codCurso);
 	    curso.setNomCurso(nomCurso);
 	    curso.setCiclo(ciclo);
 	    curso.setCrediCurso(creditCurso);
 	    curso.setHorasCurso(horasCurso);
+	    curso.setIdDocente(docent);
 	    
 		cursoDao.crearCurso(curso);
 		listarCurso(request, response);
