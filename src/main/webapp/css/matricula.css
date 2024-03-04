@@ -1,0 +1,50 @@
+@charset "ISO-8859-1";
+.tittle-matricula{
+	padding-top: 5%;
+	margin: auto;
+	padding: auto;
+	color:  rgb(0, 128, 192);
+	font-weight: 900;
+	font-size: 200%;
+}
+.label-matricula{
+	color: rgb(0, 0, 0);
+}
+.mensajeError p{
+	color: 	red;
+}
+.mensajeExito p{
+	color: #00CC00;
+}
+.row {
+	padding: 5px 20px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+.my-error-class {
+	color: #FF0000; 
+}
+
+.my-valid-class {
+	color: #00CC00; 
+}
+#wrapper{
+	background-color: red;
+}
+.matricula-container{
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	height: 90vh;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5); 
+}
+.col-md-4{
+	margin-top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

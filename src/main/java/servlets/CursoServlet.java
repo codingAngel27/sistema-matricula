@@ -32,8 +32,34 @@ public class CursoServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	String type = request.getParameter("type");
+	if (type != null) {
+		switch (type) {
+		case "registrar":
+			String id = request.getParameter("txtCodCurso");
+			if (id != null && !id.isEmpty())
+				updateCurso(request, response);
+			else
+				createCurso(request, response);
+			break;
+		case "listar":
+			listarCurso(request, response);
+			break;
+		case "obtener":
+			obtenerCurso(request, response);
+			break;
+		case "eliminar":
+			eliminarCurso(request, response);
+			break;
+		default:
+			break;
+		}
+	} else {
+		listarCurso(request, response);
+	}	
+		
 	}
 	
 	protected void obtenerCurso(HttpServletRequest request, HttpServletResponse response) 
@@ -44,22 +70,13 @@ public class CursoServlet extends HttpServlet {
 		
 		if(curso !=null) {
 			request.setAttribute("curso", curso);
-			listarCurso(request, response);
+			request.getRequestDispatcher("curso.jsp").forward(request, response);
 		}else {
 			request.setAttribute("mensaje", "Error al obtener Curso");
-			request.getRequestDispatcher("curso.jsp").forward(request, response);
+			request.getRequestDispatcher("listCurso.jsp").forward(request, response);
 		}
 	}
-	
-	protected void createOrUpdateCurso(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		String codigo = request.getParameter("txtCodCurso");
-		if(codigo == null || codigo.isEmpty() || cursoDao.getCurso(Integer.parseInt(codigo)) == null)
-			createCurso(request, response);
-		else
-			updateCurso(request, response);
-	}
-	
+		
 	protected void updateCurso(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
@@ -68,6 +85,19 @@ public class CursoServlet extends HttpServlet {
 		Integer ciclo = Integer.parseInt(request.getParameter("txtCiclo"));
 		Integer creditCurso = Integer.parseInt(request.getParameter("txtCreditCurso"));
 	    Integer horasCurso = Integer.parseInt(request.getParameter("txtHorasCurso"));
+	    
+	    Curso curso = new Curso();
+	    curso.setCodCurso(codCurso);
+	    curso.setNomCurso(nomCurso);
+	    curso.setCiclo(ciclo);
+	    curso.setCrediCurso(creditCurso);
+	    curso.setHorasCurso(horasCurso);
+	    
+	    cursoDao.actualizarCurso(curso);
+	    
+	    listarCurso(request, response);
+	    request.setAttribute("mensaje", "Curso Actualizado Correctamente");
+	    
 	   
 	}
 	protected void createCurso(HttpServletRequest request, HttpServletResponse response) 
@@ -82,7 +112,7 @@ public class CursoServlet extends HttpServlet {
 	    Curso curso = new Curso();
 	    curso.setCodCurso(codCurso);
 	    curso.setNomCurso(nomCurso);
-	    curso.setCodCurso(ciclo);
+	    curso.setCiclo(ciclo);
 	    curso.setCrediCurso(creditCurso);
 	    curso.setHorasCurso(horasCurso);
 	    
@@ -98,7 +128,7 @@ public class CursoServlet extends HttpServlet {
 		List<Curso> lisCurso = cursoDao.listarCursos();
 		
 		request.setAttribute("listCurso", lisCurso);
-		request.getRequestDispatcher("curso.jsp").forward(request, response);
+		request.getRequestDispatcher("listCursos.jsp").forward(request, response);
 		
 	}
 	protected void eliminarCurso(HttpServletRequest request, HttpServletResponse response) 
@@ -108,20 +138,6 @@ public class CursoServlet extends HttpServlet {
 		cursoDao.eliminarCurso(Integer.parseInt(codigo));
 		listarCurso(request, response);
 	}
-	protected void buscarCurso(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
-		String codigo = request.getParameter("txtBuscarCodCurso");
-		
-		Curso listCurso = cursoDao.getCurso(Integer.parseInt(codigo));
-		if(listCurso != null) {
-			request.setAttribute("listCurso", listCurso);
-		}else {
-			request.setAttribute("mensaje", "No se encontro Curso");
-		}
-		request.getRequestDispatcher("manteCurso.jsp").forward(request, response);
-	}
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -1,7 +1,6 @@
 package daoInterface;
 
 import java.util.List;
-
 import model.Curso;
 
 public interface ICursoDao {
@@ -11,5 +10,4 @@ public interface ICursoDao {
 	public void actualizarCurso(Curso c);
 	public void eliminarCurso(Integer codigo);
 	public Curso buscarCurso(Integer codCurso);
-
 }

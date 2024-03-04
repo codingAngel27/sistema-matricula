@@ -25,84 +25,13 @@
 <link
 	href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"
 	rel="stylesheet" />
-<title>Insert title here</title>
+<title>Inicio</title>
 </head>
 <body>
 	<!-- NADVAR -->
 	<div class="wrapper">
 		<!-- Sidebar -->
-		<aside id="sidebar">
-			<div class="h-100">
-				<div class="sidebar-logo">
-					<a href="index.jsp">Matricula Web</a>
-				</div>
-				<!-- Sidebar Navigation -->
-				<ul class="sidebar-nav">
-
-					<li class="sidebar-item"><a href="index.jsp"
-						class="sidebar-link"> <i class="fa-solid fa-list pe-2"></i>
-							Perfil
-					</a></li>
-					<li class="sidebar-item"><a href="#"
-						class="sidebar-link collapsed" data-bs-toggle="collapse"
-						data-bs-target="#mantenimientos" aria-expanded="false"
-						aria-controls="mantenimientos"> <i
-							class="fa-regular fa-file-lines pe-2"></i> Mantenimientos
-					</a>
-						<ul id="mantenimientos"
-							class="sidebar-dropdown list-unstyled collapse"
-							data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a href="AlumnoServlet?type=listar"
-								class="sidebar-link">Lista de Alumnos</a></li>
-							<li class="sidebar-item"><a href="alumno.jsp"
-								class="sidebar-link">Mantenimiento Alumno</a></li>	
-							<li class="sidebar-item"><a href="manteCurso.jsp"
-								class="sidebar-link">Mantenimiento Curso</a></li>
-						</ul></li>
-					<li class="sidebar-item"><a href="#"
-						class="sidebar-link collapsed" data-bs-toggle="collapse"
-						data-bs-target="#matriculas" aria-expanded="false"
-						aria-controls="matriculas"> <i
-							class="fa-regular fa-file-lines pe-2"></i> Registro Matriculas
-					</a>
-						<ul id="matriculas"
-							class="sidebar-dropdown list-unstyled collapse"
-							data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a href="matricula.jsp"
-								class="sidebar-link">Matricular Alumnos</a></li>
-							<li class="sidebar-item"><a href="retiro.jsp"
-								class="sidebar-link">Retiro Alumnos</a></li>
-						</ul></li>
-
-					<li class="sidebar-item"><a href="consultamatricula.jsp"
-						class="sidebar-link collapsed" data-bs-toggle="collapse"
-						data-bs-target="#pages" aria-expanded="false"
-						aria-controls="pages"> <i
-							class="fa-regular fa-file-lines pe-2"></i> Consultas
-					</a>
-						<ul id="pages" class="sidebar-dropdown list-unstyled collapse"
-							data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a href="consultamatricula.jsp"
-								class="sidebar-link">Consulta Matricula</a></li>
-						</ul></li>
-
-					<li class="sidebar-item"><a href="#"
-						class="sidebar-link collapsed" data-bs-toggle="collapse"
-						data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-							<i class="fa-regular fa-user pe-2"></i> Registro usuarios
-					</a>
-						<ul id="auth" class="sidebar-dropdown list-unstyled collapse"
-							data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a href="registro.jsp"
-								class="sidebar-link">Registar Usuario</a> <a
-								href="logoutServlet" class="sidebar-link">Logout</a></li>
-						</ul></li>
-
-					<li class="sidebar-link collapsed"></li>
-
-				</ul>
-			</div>
-		</aside>
+		<%@ include file="components/aside.jsp"%>
 		<!-- Main Component -->
 		<div class="main">
 			<nav class="navbar navbar-expand px-3 border-bottom">
@@ -113,8 +42,7 @@
 				</button>
 			</nav>
 			<main class="content px-3 py-2">
-				<h3>Hola desde prueba de components</h3>
-				<%
+			<%
 				Usuario usuarios = new Usuario();
 				HttpSession session2 = request.getSession();
 				Usuario usuario = (Usuario) session2.getAttribute("usuario");
@@ -122,22 +50,44 @@
 				if (usuario != null) {
 					Rol rol = usuario.getIdRol();
 				%>
-				<p>
-					Nombre:
-					<%=usuario.getNombre()%></p>
-				<p>
-					Rol:
-					<%=(rol != null) ? rol.getNombreRol() : "Sin Rol"%></p>
-				<p>
-					Email:
-					<%=usuario.getEmail()%></p>
-				<%
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="./img/perfil.webp"
+                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <h4 style="color: black;"><%=usuario.getNombre()%></h4>
+              <i class="far fa-edit mb-5"></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Información</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Rol</h6>
+                    <p class="text-muted"><%=(rol != null) ? rol.getNombreRol() : "Sin Rol"%></p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted"><%=usuario.getEmail()%></p>
+                  </div>
+                  <%
 				} else {
 				%>
 				<p>No se ha iniciado sesión.</p>
 				<%
 				}
 				%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 			</main>
 		</div>
 	</div>
