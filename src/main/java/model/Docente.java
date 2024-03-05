@@ -78,8 +78,4 @@ public class Docente {
 	public void setProfesion(String profesion) {
 		this.profesion = profesion;
 	}
-	
-	
-	
-
 }

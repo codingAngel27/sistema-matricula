@@ -42,27 +42,8 @@
 				</button>
 			</nav>
 			<main class="content px-3 py-2">
-			
 			<div class="container-fluid mantenimiento-container ">
-
 					<h3 class="title-mantenimiento">Mantenimiento Alumno</h3>
-					<!--<nav class="navbar bg-body-tertiary container-buscar"
-						id="manteAlumno">
-						<div class="container">
-							<form class="d-flex justify-content-end" role="search"
-								action="AlumnoServlett?type=buscarAlum" method="post">
-								<div class="input-group">
-									<input class="form-control me-2" type="search"
-										placeholder="Buscar" aria-label="Search" name="txtBuscarDni"
-										id="txtBuscarDni">
-									<button class="btn btn-success" type="submit">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</button>
-								</div>
-							</form>
-						</div>
-					</nav>-->
-					
 					<div class="row">
 						<div class="col-3">
 

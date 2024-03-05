@@ -11,7 +11,7 @@
 <meta charset="ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/matricula.css" type="text/css">
+
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
 <script src="https://kit.fontawesome.com/ae360af17e.js"
@@ -44,28 +44,29 @@
 				</button>
 			</nav>
 			<main class="content px-3 py-2">
-
-
-				<div class="container-fluid mantenimiento-container">
-
-					<h2 class="title-mantenimiento">Mantenimiento Curso</h2>
-					<div class="row">
-						<div class="col-3">
-							<br>
+    <div class="container-fluid mantenimiento-container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="title-mantenimiento text-center">Mantenimiento Curso</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
 							<form action="CursoServlet?type=registrar" method="post"
 								name="mantenimientoCurso">
+								
 								<div class="form-group">
-									<label>Cod Curso</label> <input class="form-control"
+									<label>Codigo del Curso</label> <input class="form-control"
 										type="text" value="${curso.codCurso}" name="txtCodCurso"
 										id="txtCodCurso">
 								</div>
 								<div class="form-group">
-									<label>Curso</label> <input class="form-control" type="text"
-										value="${curso.nomCurso}" name="txtnomCurso" id="txtnomCurso">
+									<label>Nombre del Curso</label> <input class="form-control"
+										type="text" value="${curso.nomCurso}" name="txtnomCurso"
+										id="txtnomCurso">
 								</div>
-								<br>
 								<div class="form-group">
-									<label for="txtCiclo">Ciclo</label> <select
+									<label for="txtCiclo">Seleccionar Ciclo:</label> <select
 										class="form-control" name="txtCiclo" id="txtCiclo">
 										<option value="1" ${curso.ciclo == '1' ? 'selected' : ''}>Primero</option>
 										<option value="2" ${curso.ciclo == '2' ? 'selected' : ''}>Segundo</option>
@@ -74,52 +75,39 @@
 										<option value="5" ${curso.ciclo == '5' ? 'selected' : ''}>Quinto</option>
 									</select>
 								</div>
-								<br>
 								<div class="form-group">
 									<label>Creditos</label> <input class="form-control"
 										value="${curso.crediCurso}" type="text" name="txtCreditCurso"
 										id="txtCreditCurso">
 								</div>
-								<br>
-								<div class="form-group">
-									<label>Horas</label> <input class="form-control" type="text"
-										value="${curso.horasCurso}" name="txtHorasCurso"
-										id="txtHorasCurso">
-
-								</div>
-								<br>
-								<div class="form-group">
-									<label for="selectDocente">Seleccionar Docente</label> <select
-										class="form-control" name="selectDocente" id="selectDocente">
-										<%
-										Curso curso = (Curso) request.getAttribute("curso");
-										IDocenteDao docenteDao = new DocenteDaoImpl();
-										List<Docente> listarDocentes = docenteDao.listarDocentes();
-
-										if (listarDocentes != null) {
-											for (Docente d : listarDocentes) {
-										%>
-										<option value="<%=d.getIdProfesor()%>"
-											<%if (curso != null && curso.getIdDocente() != null && d.getIdProfesor() == curso.getIdDocente().getIdProfesor()) {out.print("selected");}%>><%=d.getNombre()%></option>
-										<%
-										}
-										}
-										%>
-									</select>
-								</div>
-
-
-
-
-
-								<div class="col-md-6">
-									<input type="submit" class="mt-5 btn btn-primary"
-										value="<%if (request.getParameter("codCurso") != null) {%>Actualizar<%} else {%>Enviar Datos<%}%>">
-								</div>
-							</form>
 						</div>
-					</div>
-				</div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Horas</label>
+                        <input class="form-control" type="text" value="${curso.horasCurso}" name="txtHorasCurso" id="txtHorasCurso">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectDocente">Seleccionar Docente:</label>
+                        <select class="form-control" name="selectDocente" id="selectDocente">
+                            <% Curso curso = (Curso) request.getAttribute("curso");
+                            IDocenteDao docenteDao = new DocenteDaoImpl();
+                            List<Docente> listarDocentes = docenteDao.listarDocentes();
+
+                            if (listarDocentes != null) {
+                                for (Docente d : listarDocentes) { %>
+                                    <option value="<%=d.getIdProfesor()%>" <%if (curso != null && curso.getIdDocente() != null && d.getIdProfesor() == curso.getIdDocente().getIdProfesor()) {out.print("selected");}%>><%=d.getNombre()%></option>
+                            <% } } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="mt-5 btn btn-primary" value="<%if (request.getParameter("codCurso") != null) {%>Actualizar<%} else {%>Enviar Datos<%}%>">
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</main>
+			
 				<script type="text/javascript">
 					$(function() {
 						$("form[name='mantenimientoCurso']")
@@ -175,7 +163,6 @@
 										});
 					});
 				</script>
-			</main>
 		</div>
 	</div>
 	<%@ include file="components/footer.jsp"%>

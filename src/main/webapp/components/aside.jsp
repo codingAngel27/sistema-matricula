@@ -69,7 +69,7 @@
 							data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a href="registro.jsp"
 								class="sidebar-link">Registar Usuario</a> <a
-								href="logoutServlet" class="sidebar-link">Logout</a></li>
+								href="logoutServlet" class="sidebar-link">Cerrar Sesion</a></li>
 						</ul></li>
 
 					<li class="sidebar-link collapsed"></li>
