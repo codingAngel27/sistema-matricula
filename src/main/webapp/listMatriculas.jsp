@@ -46,9 +46,11 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
-			<main class="content px-3 py-2">
+			<main class="content px-3 py-2">			
 			<!-- CONTENEDOR MATRICULA -->
 	<div class="container-fluid matricula-container" id="matriculaAlumno">
+	
+	<a href="matricula.jsp" class="btn btn-primary">Nueva Matricula</a>
 		<div class="row">
 			     <div class="col-md-8 mx-auto text-center"> <!-- Utilizamos mx-auto y text-center para centrar horizontalmente -->
             <h3 class="tittle-matricula">Lista de Alumnos Matriculados</h3>
@@ -87,9 +89,8 @@
 								<td><a
 									href="MatriculaServlet?type=obtener&numMatricula=<%=c.getNumMatricula()%>"
 									class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-									<a
-									href="MatriculaServlet?type=eliminar&numMatricula=<%=c.getNumMatricula()%>"
-									class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+									<a href="#" onclick="confirmarEliminar('<%=c.getNumMatricula()%>')"
+       class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
 								</td>
 							</tr>
 							<%
@@ -108,12 +109,19 @@
 
 		</div>
 	</div>
+	<%@ include file="components/footer.jsp"%>
 	<%
 	if (session.getAttribute("usuario") == null) {
 		response.sendRedirect("login.jsp");
 	}
 	%>
-
+	<script>
+    function confirmarEliminar(numMatricula) {
+        if (confirm('¿Estás seguro de que quieres eliminar esta matrícula?')) {
+            window.location.href = 'MatriculaServlet?type=eliminar&numMatricula=' + numMatricula;
+        }
+    }
+</script>
 	<script
 		src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 	<script

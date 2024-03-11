@@ -44,11 +44,11 @@
 								class="sidebar-link">Lista Matricula</a></li>
 							<li class="sidebar-item"><a href="matricula.jsp"
 								class="sidebar-link">Matricular Alumnos</a></li>
-							<li class="sidebar-item"><a href="retiro.jsp"
-								class="sidebar-link">Retiro Alumnos</a></li>
+							<!-- <li class="sidebar-item"><a href="retiro.jsp"
+								class="sidebar-link">Retiro Alumnos</a></li> -->
 						</ul></li>
 
-					<li class="sidebar-item"><a href="consultamatricula.jsp"
+				<!--	<li class="sidebar-item"><a href="consultamatricula.jsp"
 						class="sidebar-link collapsed" data-bs-toggle="collapse"
 						data-bs-target="#pages" aria-expanded="false"
 						aria-controls="pages"> <i
@@ -58,18 +58,16 @@
 							data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a href="consultamatricula.jsp"
 								class="sidebar-link">Consulta Matricula</a></li>
-						</ul></li>
+						</ul></li>-->
 
 					<li class="sidebar-item"><a href="#"
 						class="sidebar-link collapsed" data-bs-toggle="collapse"
 						data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-							<i class="fa-regular fa-user pe-2"></i> Registro usuarios
+							<i class="fa-regular fa-user pe-2"></i>usuario
 					</a>
 						<ul id="auth" class="sidebar-dropdown list-unstyled collapse"
 							data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a href="registro.jsp"
-								class="sidebar-link">Registar Usuario</a> <a
-								href="logoutServlet" class="sidebar-link">Cerrar Sesion</a></li>
+							<li class="sidebar-item"> <a href="logoutServlet" class="sidebar-link">Cerrar Sesión</a></li>
 						</ul></li>
 
 					<li class="sidebar-link collapsed"></li>

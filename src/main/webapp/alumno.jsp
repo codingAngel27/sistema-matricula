@@ -8,7 +8,6 @@
 <meta charset="ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/matricula.css" type="text/css">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
 <script src="https://kit.fontawesome.com/ae360af17e.js"
@@ -43,7 +42,7 @@
 			</nav>
 			<main class="content px-3 py-2">
 			<div class="container-fluid mantenimiento-container ">
-					<h3 class="title-mantenimiento">Mantenimiento Alumno</h3>
+					<h2 class="title-mantenimiento text-center">Mantenimiento Alumno</h2>
 					<div class="row">
 						<div class="col-3">
 

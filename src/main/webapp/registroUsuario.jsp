@@ -1,9 +1,5 @@
-<%@page import="model.Alumno"%>
-<%@page import="model.Curso"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Matricula"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +27,7 @@
 	href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"
 	rel="stylesheet" />
 
-<title>Matricular Alumno</title>
+<title>Registrar Usuario</title>
 </head>
 
 <body>
@@ -57,28 +53,40 @@
 				<div class="col-lg-6">
 
 
-					<form action="MatriculaServlet?type=registrar" method="post"
+					<form action="UsuarioServlet?type=registrar" method="post"
 						name="Registration" class="form-matricula">
 						<div class="form-group matricula-group">
-							<label class="label-matricula">Numero de Matricula</label> <input
+							<label class="label-matricula">Id Usuario</label> <input
 								class="form-control" type="number" value="${matri.numMatricula}"
-								name="txtNumMatricula" id="txtNumMatricula" readonly="readonly">
+								name="txtNumMatricula" id="txtIdUsuario" readonly="readonly">
 						</div>
 						<br>
 						<div class="form-group">
-							<label class="label-matricula">Código de Alumno</label> <input
+							<label class="label-matricula">Nombre</label> <input
 								class="form-control" type="number" value="${matri.codAlumno.idAlumno}"
-								name="txtCodAlumno" id="txtCodAlumno">
+								name="txtCodAlumno" id="txtNomUsuario">
 						</div>
 						<br>
 						<div class="form-group">
-							<label class="label-matricula">Código de Curso</label> <input
+							<label class="label-matricula">email</label> <input
 								class="form-control" type="number" value="${matri.codCurso.codCurso}"
-								name="txtCodCurso" id="txtCodCurso">
+								name="txtCodCurso" id="txtEmailUsuario">
+						</div>
+						<br>
+						<div class="form-group">
+							<label class="label-matricula">Contraseña</label> <input
+								class="form-control" type="password" value="${matri.codCurso.codCurso}"
+								name="txtCodCurso" id="txtContrasenia">
+						</div>
+						<br>
+						<div class="form-group">
+							<label class="label-matricula">Rol</label> <input
+								class="form-control" type="number" value="${matri.codCurso.codCurso}"
+								name="txtCodCurso" id="txtRol">
 						</div>
 						<br>
 							<div class="col-md-6">
-								<input type="submit" class="btn btn-primary" value="Matricular">
+								<input type="submit" class="btn btn-primary" value="Registrar">
 							</div>
 							<br>
 							<div class="col-md-6">
@@ -89,27 +97,6 @@
 
 						<br>
 					</form>
-
-					<%
-					if ("registrar".equals(request.getParameter("type"))) {
-						String mensaje = (String) request.getAttribute("mensaje");
-						if (mensaje != null) {
-							if ("Alumno matriculado correctamente".equals(mensaje)) {
-					%>
-					<div class="mensajeExito">
-						<p class="mensajeExito"><%=mensaje%></p>
-					</div>
-					<%
-					} else {
-					%>
-					<div class="mensajeError">
-						<p class="mensajeError"><%=mensaje%></p>
-					</div>
-					<%
-					}
-					}
-					}
-					%>
 				</div>
 			</div>
 
@@ -123,7 +110,6 @@
 
 		</div>
 	</div>
-	<%@ include file="components/footer.jsp"%>
 	<%
 	if (session.getAttribute("usuario") == null) {
 		response.sendRedirect("login.jsp");
