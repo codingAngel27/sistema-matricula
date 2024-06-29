@@ -4,15 +4,6 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<!--  <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous"></script>-->
 <link rel="stylesheet" href="./css/style.css" type="text/css">
 <title>Login</title>
 </head>
@@ -56,10 +47,8 @@
       <h3>Derechos reservados</h3>
       </footer>
   <script>
-    // Espera 5 segundos y luego oculta el mensaje
     setTimeout(function() {
         document.getElementById("mensaje").style.display = "none";
-    }, 5000); // 5000 milisegundos = 5 segundos
-</script>
+    }, 5000);
 </body>
 </html>
